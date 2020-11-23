@@ -6,6 +6,8 @@ use Infrastructure\Abstracts\EntityAbstract;
 
 class Coupon extends EntityAbstract
 {
+    /** @var Enumeration $typeRelation */
+
     public const ID = 'id';
     public const TYPE = 'type';
     public const TITLE = 'title';
