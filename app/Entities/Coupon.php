@@ -4,28 +4,32 @@ namespace App\Entities;
 
 use Infrastructure\Abstracts\EntityAbstract;
 
-class Enumeration extends EntityAbstract
+class Coupon extends EntityAbstract
 {
-    /** @var Enumeration $childrenRelation */
-    /** @var Enumeration $parentRelation */
+    /** @var Enumeration $typeRelation */
 
     public const ID = 'id';
+    public const TYPE = 'type';
     public const TITLE = 'title';
-    public const PARENT_ID = 'parent_id';
+    public const RULES = 'rules';
+    public const RESULTS = 'results';
 
+    public const CREATED_BY = 'created_by';
     public const CREATED_AT = 'created_at';
     public const UPDATED_AT = 'updated_at';
     public const DELETED_AT = 'deleted_at';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        self::ID,
+        self::TYPE,
         self::TITLE,
-        self::PARENT_ID,
+        self::RULES,
+        self::RESULTS,
+        self::CREATED_BY,
+    ];
+
+    protected $casts = [
+        self::RULES => 'array',
+        self::RESULTS => 'array',
     ];
 
     /**
@@ -43,16 +47,11 @@ class Enumeration extends EntityAbstract
 
     public static function tn()
     {
-        return 'enumerations';
+        return 'coupons';
     }
 
-    public function childrenRelation()
+    public function typeRelation()
     {
-        return $this->hasMany(self::class, self::PARENT_ID, self::ID);
-    }
-
-    public function parentRelation()
-    {
-        return $this->hasOne(self::class, self::ID, self::PARENT_ID);
+        return $this->hasOne(Enumeration::class, Enumeration::ID, self::TYPE);
     }
 }
