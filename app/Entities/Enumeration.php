@@ -53,6 +53,6 @@ class Enumeration extends EntityAbstract
 
     public function parentRelation()
     {
-        return $this->belongsTo(self::class, self::PARENT_ID, self::ID);
+        return $this->hasOne(self::class, self::ID, self::PARENT_ID);
     }
 }
