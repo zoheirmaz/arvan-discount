@@ -30,3 +30,13 @@ if (!function_exists('pay')) {
         )->pay()->render();
     }
 }
+
+if (!function_exists('enumeration_repository')) {
+    /**
+     * @return \Infrastructure\Repositories\EnumerationRepositoryInterface
+     */
+    function enumeration_repository()
+    {
+        return app(\Infrastructure\Repositories\EnumerationRepositoryInterface::class);
+    }
+}
