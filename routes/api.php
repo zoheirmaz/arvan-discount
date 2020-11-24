@@ -90,4 +90,14 @@ Route::prefix('/coupon')->group(function () {
      */
     Route::post('/create', 'CouponController@create');
 
+    /**
+     * @OA\Get(
+     *     path="/coupon/rules-results",
+     *     summary="Get coupons rules and results",
+     *     tags={"Coupon"},
+     *     @OA\Response(response="200", description="requst is sucessful"),
+     *     @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::get('/rules-results', 'CouponController@getCouponCreationRequirements');
 });
