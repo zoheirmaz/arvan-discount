@@ -8,6 +8,7 @@ use Shetabit\Multipay\Abstracts\Driver;
 use App\Entities\Payment as PaymentEntity;
 use Infrastructure\Enums\PaymentGatewaysEnums;
 use Infrastructure\Enums\TransactionStatusEnums;
+use Infrastructure\Repositories as RepositoriesInterfaces;
 
 if (!function_exists('pay')) {
     function pay(PaymentEntity $payment)
@@ -38,5 +39,15 @@ if (!function_exists('enumeration_repository')) {
     function enumeration_repository()
     {
         return app(\Infrastructure\Repositories\EnumerationRepositoryInterface::class);
+    }
+}
+
+if (!function_exists('coupon_usage_repository')) {
+    /**
+     * @return RepositoriesInterfaces\CouponUsageRepositoryInterface
+     */
+    function coupon_usage_repository()
+    {
+        return app(RepositoriesInterfaces\CouponUsageRepositoryInterface::class);
     }
 }
