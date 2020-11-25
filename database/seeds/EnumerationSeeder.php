@@ -14,7 +14,7 @@ class EnumerationSeeder extends Seeder
     {
         Enumeration::create([
             Enumeration::ID => 4,
-            Enumeration::TITLE => 'parent'
+            Enumeration::TITLE => 'coupon type'
         ]);
 
         Enumeration::create([
