@@ -124,4 +124,33 @@ Route::prefix('/coupon')->group(function () {
      * )
      */
     Route::post('/apply', 'CouponController@apply');
+
+    /**
+     * @OA\Get(
+     *      path="/coupon/usage-report",
+     *      summary="Get coupons usage report",
+     *      tags={"Coupon"},
+     *      @OA\Parameter(
+     *          name="coupon_id",
+     *          description="Coupon id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="mobile",
+     *          description="User mobile",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(response="200", description="requst is sucessful"),
+     *      @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::get('/usage-report', 'CouponUsageController@usageList');
 });

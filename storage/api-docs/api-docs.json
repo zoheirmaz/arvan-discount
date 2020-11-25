@@ -112,7 +112,7 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "coupon_Id": {
+                                    "coupon_id": {
                                         "type": "integer"
                                     },
                                     "mobile": {
@@ -127,6 +127,42 @@
                 "responses": {
                     "200": {
                         "description": "coupon applied successfully"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/usage-report": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get coupons usage report",
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "query",
+                        "description": "Coupon id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
                     },
                     "401": {
                         "description": "unauthorized"
