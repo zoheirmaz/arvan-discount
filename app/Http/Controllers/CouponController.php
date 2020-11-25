@@ -45,4 +45,13 @@ class CouponController extends ControllerAbstract
 
         return new CouponRulesResultsResource($rulesAndResults);
     }
+
+    protected function apply(Request $request)
+    {
+        $input = [
+            'mobile' => $request->input('mobile'),
+        ];
+
+        return $this->repository->applyForUser($input, $request->get('coupon_id'));
+    }
 }

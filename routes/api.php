@@ -100,4 +100,28 @@ Route::prefix('/coupon')->group(function () {
      * )
      */
     Route::get('/rules-results', 'CouponController@getCouponCreationRequirements');
+
+    /**
+     * @OA\Post(
+     *     path="/coupon/apply",
+     *     summary="Apply a coupon to a user",
+     *     tags={"Coupon"},
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="coupon_id",
+     *                  type="integer",
+     *              ),
+     *              @OA\Property(
+     *                  property="mobile",
+     *                  type="string",
+     *              ),
+     *          )
+     *     ),
+     *     @OA\Response(response="200", description="coupon applied successfully"),
+     *     @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::post('/apply', 'CouponController@apply');
 });
