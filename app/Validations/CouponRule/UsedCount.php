@@ -11,7 +11,7 @@ class UsedCount extends ValidationAbstract
         return [
             'mobile' => [
                 'required',
-                'string',
+                'numeric',
             ],
         ];
     }
