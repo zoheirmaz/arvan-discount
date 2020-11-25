@@ -9,6 +9,7 @@ use App\Entities\Payment as PaymentEntity;
 use Infrastructure\Enums\PaymentGatewaysEnums;
 use Infrastructure\Enums\TransactionStatusEnums;
 use Infrastructure\Repositories as RepositoriesInterfaces;
+use Infrastructure\Interfaces\Services as ServicesInterfaces;
 
 if (!function_exists('pay')) {
     function pay(PaymentEntity $payment)
@@ -49,5 +50,23 @@ if (!function_exists('coupon_usage_repository')) {
     function coupon_usage_repository()
     {
         return app(RepositoriesInterfaces\CouponUsageRepositoryInterface::class);
+    }
+}
+
+if (!function_exists('coupon_calculator')) {
+    /**
+     * @param $input
+     * @param $coupon
+     * @return ServicesInterfaces\CouponCalculatorInterface
+     */
+    function coupon_calculator($input, $coupon)
+    {
+        return app(
+            ServicesInterfaces\CouponCalculatorInterface::class,
+            [
+                'input' => $input,
+                'coupon' => $coupon,
+            ]
+        );
     }
 }
