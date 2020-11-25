@@ -4,6 +4,7 @@ namespace Infrastructure\Interfaces\Coupon;
 
 use App\Entities\Coupon;
 use Illuminate\Support\Facades\Validator;
+use Infrastructure\Abstracts\ValidationAbstract;
 use Infrastructure\Exceptions\ValidatorException;
 
 abstract class RuleAbstract
@@ -29,10 +30,17 @@ abstract class RuleAbstract
     {
         $validationClass = config('coupon.rule.validation_classes')[$this->ruleId()];
 
+        if (!class_exists($validationClass)) {
+            throw new \Exception("class `{$validationClass}` not  exists!!!");
+        }
+
+        /** @var ValidationAbstract $validationObj */
+        $validationObj = new $validationClass();
+
         $validator = Validator::make(
             $this->input,
-            $validationClass->rules(),
-            $validationClass->messages()
+            $validationObj->rules(),
+            $validationObj->messages()
         );
 
         if ($validator->fails()) {
