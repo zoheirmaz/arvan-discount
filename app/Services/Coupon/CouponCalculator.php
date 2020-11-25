@@ -6,9 +6,9 @@ use App\Entities\Coupon;
 use Infrastructure\Exceptions\LogicException;
 use Infrastructure\Interfaces\Coupon\RuleAbstract;
 use Infrastructure\Interfaces\Coupon\ResultAbstract;
-use Infrastructure\Interfaces\Coupon\RuleAbstract;
+use Infrastructure\Interfaces\Services\CouponCalculatorInterface;
 
-class CouponCalculator
+class CouponCalculator implements CouponCalculatorInterface
 {
     private $coupon;
     private $input;
