@@ -24,7 +24,7 @@ class CreateCouponUsageTable extends Migration
             $table->text('created_by')->nullable();
         });
 
-        Schema::table('coupons', function (Blueprint $table) {
+        Schema::table('coupon_usage', function (Blueprint $table) {
             $table->foreign('coupon_id')->references('id')->on('coupons');
         });
     }
