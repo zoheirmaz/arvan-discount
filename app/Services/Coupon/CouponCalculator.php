@@ -4,6 +4,7 @@ namespace App\Services\Coupon;
 
 use App\Entities\Coupon;
 use Infrastructure\Exceptions\LogicException;
+use Infrastructure\Interfaces\Coupon\RuleAbstract;
 use Infrastructure\Interfaces\Coupon\ResultAbstract;
 use Infrastructure\Interfaces\Coupon\RuleAbstract;
 
@@ -37,7 +38,7 @@ class CouponCalculator
             $ruleClass = config('coupon.rule.classes')[$rule['rule']];
 
             /** @var RuleAbstract $ruleObj */
-            $ruleObj = new $ruleClass($this->input);
+            $ruleObj = new $ruleClass($this->input, $rule['values'], $this->coupon);
 
             if (!$ruleObj->check()) {
                 return false;
@@ -57,7 +58,7 @@ class CouponCalculator
             $resultClass = config('coupon.result.classes')[$result['result']];
 
             /** @var ResultAbstract $resultObj */
-            $resultObj = new $resultClass();
+            $resultObj = new $resultClass($result['values']);
 
             $finalResult = array_merge($finalResult, $resultObj->getResult());
         }
