@@ -99,7 +99,7 @@ Route::prefix('/coupon')->group(function () {
      *     @OA\Response(response="401", description="unauthorized")
      * )
      */
-    Route::get('/rules-results', 'CouponController@getCouponCreationRequirements');
+    Route::get('/rules-results', 'CouponController@getCouponRulesAndResults');
 
     /**
      * @OA\Post(
