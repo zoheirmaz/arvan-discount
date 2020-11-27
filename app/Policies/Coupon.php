@@ -10,4 +10,9 @@ class Coupon extends PolicyAbstract
     {
         return true;
     }
+
+    public function apply()
+    {
+        return true;
+    }
 }

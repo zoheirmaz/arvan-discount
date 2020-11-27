@@ -90,4 +90,67 @@ Route::prefix('/coupon')->group(function () {
      */
     Route::post('/create', 'CouponController@create');
 
+    /**
+     * @OA\Get(
+     *     path="/coupon/rules-results",
+     *     summary="Get coupons rules and results",
+     *     tags={"Coupon"},
+     *     @OA\Response(response="200", description="requst is sucessful"),
+     *     @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::get('/rules-results', 'CouponController@getCouponCreationRequirements');
+
+    /**
+     * @OA\Post(
+     *     path="/coupon/apply",
+     *     summary="Apply a coupon to a user",
+     *     tags={"Coupon"},
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="coupon_id",
+     *                  type="integer",
+     *              ),
+     *              @OA\Property(
+     *                  property="mobile",
+     *                  type="string",
+     *              ),
+     *          )
+     *     ),
+     *     @OA\Response(response="200", description="coupon applied successfully"),
+     *     @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::post('/apply', 'CouponController@apply');
+
+    /**
+     * @OA\Get(
+     *      path="/coupon/usage-report",
+     *      summary="Get coupons usage report",
+     *      tags={"Coupon"},
+     *      @OA\Parameter(
+     *          name="coupon_id",
+     *          description="Coupon id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="mobile",
+     *          description="User mobile",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(response="200", description="requst is sucessful"),
+     *      @OA\Response(response="401", description="unauthorized")
+     * )
+     */
+    Route::get('/usage-report', 'CouponUsageController@usageList');
 });

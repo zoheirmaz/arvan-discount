@@ -23,7 +23,7 @@ class CreateCouponsTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('created_by')->nullable();
+            $table->text('created_by')->nullable();
         });
 
         Schema::table('coupons', function (Blueprint $table) {

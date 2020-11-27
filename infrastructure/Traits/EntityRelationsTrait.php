@@ -10,4 +10,11 @@ trait EntityRelationsTrait
             'typeRelation',
         ];
     }
+
+    public function couponUsageRelations()
+    {
+        return [
+            'couponRelation',
+        ];
+    }
 }

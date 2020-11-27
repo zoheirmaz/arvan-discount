@@ -6,6 +6,7 @@ use App\Entities\Coupon;
 use Illuminate\Http\Request;
 use App\Http\Resources\CouponResource;
 use Infrastructure\Abstracts\ControllerAbstract;
+use App\Http\Resources\CouponRulesResultsResource;
 use Infrastructure\Repositories\CouponRepositoryInterface;
 
 class CouponController extends ControllerAbstract
@@ -36,5 +37,21 @@ class CouponController extends ControllerAbstract
         $result = $this->repository->findById($request->get('id'));
 
         return (new CouponResource($result));
+    }
+
+    protected function getCouponRulesAndResults()
+    {
+        $rulesAndResults = enumeration_repository()->findCouponRulesAndResults();
+
+        return new CouponRulesResultsResource($rulesAndResults);
+    }
+
+    protected function apply(Request $request)
+    {
+        $input = [
+            'mobile' => $request->input('mobile'),
+        ];
+
+        return $this->repository->applyForUser($input, $request->get('coupon_id'));
     }
 }

@@ -34,4 +34,11 @@ class CouponRepository implements CouponRepositoryInterface
     {
         return collect($data)->unique($key)->toArray();
     }
+
+    public function applyForUser($input, $couponId)
+    {
+        $coupon = $this->findById($couponId);
+
+        return coupon_calculator($input, $coupon)->calculate();
+    }
 }

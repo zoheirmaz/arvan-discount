@@ -13,13 +13,20 @@ class EnumerationSeeder extends Seeder
     public function run()
     {
         Enumeration::create([
-            Enumeration::ID => 1,
-            Enumeration::TITLE => 'coupon rules'
+            Enumeration::ID => 4,
+            Enumeration::TITLE => 'coupon type'
         ]);
 
         Enumeration::create([
-            Enumeration::ID => 2,
-            Enumeration::TITLE => 'coupon results',
+            Enumeration::ID => 5,
+            Enumeration::TITLE => 'discount',
+            Enumeration::PARENT_ID => 4,
+        ]);
+
+        Enumeration::create([
+            Enumeration::ID => 6,
+            Enumeration::TITLE => 'CREDIT',
+            Enumeration::PARENT_ID => 4,
         ]);
     }
 }

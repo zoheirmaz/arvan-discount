@@ -9,4 +9,6 @@ interface EnumerationRepositoryInterface
     public function findById($id);
 
     public function create($data);
+
+    public function findCouponRulesAndResults();
 }

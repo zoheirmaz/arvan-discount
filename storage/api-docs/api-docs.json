@@ -83,6 +83,92 @@
                     }
                 }
             }
+        },
+        "/coupon/rules-results": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get coupons rules and results",
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/apply": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Apply a coupon to a user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "coupon_id": {
+                                        "type": "integer"
+                                    },
+                                    "mobile": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "coupon applied successfully"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/usage-report": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get coupons usage report",
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "query",
+                        "description": "Coupon id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
         }
     },
     "components": {
