@@ -39,7 +39,7 @@ class CouponController extends ControllerAbstract
         return (new CouponResource($result));
     }
 
-    protected function getCouponRulesAndResults()
+    protected function getCouponRulesAndResults(Request $request)
     {
         $rulesAndResults = enumeration_repository()->findCouponRulesAndResults();
 

@@ -15,4 +15,9 @@ class Coupon extends PolicyAbstract
     {
         return true;
     }
+
+    public function getCouponRulesAndResults()
+    {
+        return true;
+    }
 }

@@ -13,6 +13,10 @@ class Apply extends ValidationAbstract
                 'required',
                 'integer',
             ],
+            'mobile'=>[
+                'required',
+                'numeric',
+            ]
         ];
     }
 
