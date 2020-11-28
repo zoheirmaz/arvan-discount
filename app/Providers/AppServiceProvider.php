@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services as Services;
 use Illuminate\Support\ServiceProvider;
+use Infrastructure\Interfaces\Services as ServiceInterfaces;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            ServiceInterfaces\CouponCalculatorInterface::class,
+            Services\Coupon\CouponCalculator::class
+        );
     }
 
     /**

@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "L5 OpenApi",
+        "title": "Coupon",
         "description": "L5 Swagger OpenApi description",
         "contact": {
             "email": "zoheirmaz.zm@gmail.com"
@@ -14,84 +14,59 @@
         }
     ],
     "paths": {
-        "/user": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Get current user",
-                "responses": {
-                    "200": {
-                        "description": "register sucessful"
-                    },
-                    "401": {
-                        "description": "unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/register": {
+        "/coupon/create": {
             "post": {
                 "tags": [
-                    "User"
+                    "Coupon"
                 ],
-                "summary": "Register a user",
-                "requestBody": {
-                    "description": "Pass name, mobile, password",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "mobile": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "register sucessful"
-                    },
-                    "401": {
-                        "description": "unauthorized"
-                    }
-                }
-            }
-        },
-        "/login": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Post to URL",
+                "summary": "Login a user",
                 "requestBody": {
                     "request": "Pet",
-                    "description": "Pet object that needs to be added to the store",
+                    "description": "create coupon input data structure",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "mobile": {
+                                    "title": {
                                         "type": "string"
                                     },
-                                    "password": {
-                                        "type": "string"
+                                    "type": {
+                                        "type": "integer"
+                                    },
+                                    "rules": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "rule": {
+                                                    "type": "integer"
+                                                },
+                                                "values": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "results": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "result": {
+                                                    "type": "integer"
+                                                },
+                                                "values": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
                                     }
                                 },
                                 "type": "object"
@@ -102,6 +77,92 @@
                 "responses": {
                     "200": {
                         "description": "login sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/rules-results": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get coupons rules and results",
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/apply": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Apply a coupon to a user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "coupon_id": {
+                                        "type": "integer"
+                                    },
+                                    "mobile": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "coupon applied successfully"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/coupon/usage-report": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get coupons usage report",
+                "parameters": [
+                    {
+                        "name": "coupon_id",
+                        "in": "query",
+                        "description": "Coupon id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "User mobile",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "requst is sucessful"
                     },
                     "401": {
                         "description": "unauthorized"
